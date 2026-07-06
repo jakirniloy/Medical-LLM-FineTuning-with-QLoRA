@@ -1,8 +1,32 @@
-# \# 🩺 Medical LLM Fine-Tuning with Qwen2.5-1.5B-Instruct using QLoRA
+# <div align="center">
 
 # 
 
-# > Parameter-efficient fine-tuning of \*\*Qwen2.5-1.5B-Instruct\*\* on the \*\*PubMedQA\*\* biomedical question answering dataset using \*\*4-bit QLoRA\*\*.
+# \# 🩺 Medical LLM Fine-Tuning using Qwen2.5-1.5B \& QLoRA
+
+# 
+
+# \### Efficient Biomedical Question Answering using PubMedQA and Parameter-Efficient Fine-Tuning (PEFT)
+
+# 
+
+# <p align="center">
+
+# 
+
+# !\[Python](https://img.shields.io/badge/Python-3.11-blue?style=for-the-badge\&logo=python)
+
+# !\[PyTorch](https://img.shields.io/badge/PyTorch-2.x-red?style=for-the-badge\&logo=pytorch)
+
+# !\[Transformers](https://img.shields.io/badge/HuggingFace-Transformers-yellow?style=for-the-badge\&logo=huggingface)
+
+# !\[QLoRA](https://img.shields.io/badge/QLoRA-4bit-success?style=for-the-badge)
+
+# !\[License](https://img.shields.io/badge/License-GPL--3.0-green?style=for-the-badge)
+
+# 
+
+# </p>
 
 # 
 
@@ -10,25 +34,11 @@
 
 # 
 
-# \## 🚀 Features
+# ⭐ Fine-tuning \*\*Qwen2.5-1.5B-Instruct\*\* on \*\*PubMedQA\*\* using \*\*4-bit QLoRA\*\* for biomedical question answering.
 
 # 
 
-# \- ✅ Qwen2.5-1.5B-Instruct
-
-# \- ✅ QLoRA Fine-Tuning
-
-# \- ✅ 4-bit Quantization (BitsAndBytes)
-
-# \- ✅ PEFT (LoRA)
-
-# \- ✅ PubMedQA Dataset
-
-# \- ✅ Kaggle T4 GPU Compatible
-
-# \- ✅ Hugging Face Integration
-
-# \- ✅ Medical Question Answering
+# </div>
 
 # 
 
@@ -36,19 +46,77 @@
 
 # 
 
-# \## 📂 Repository Structure
+# \# 📖 Overview
+
+# 
+
+# This project demonstrates how to efficiently fine-tune \*\*Qwen2.5-1.5B-Instruct\*\* for biomedical question answering using the \*\*PubMedQA\*\* dataset.
+
+# 
+
+# Instead of updating billions of parameters, this project uses \*\*QLoRA (Quantized Low-Rank Adaptation)\*\*, allowing training on a single \*\*NVIDIA Tesla T4 (16GB)\*\* GPU.
+
+# 
+
+# \---
+
+# 
+
+# \# ✨ Features
+
+# 
+
+# \- 🚀 Qwen2.5-1.5B-Instruct
+
+# \- ⚡ 4-bit Quantization (BitsAndBytes)
+
+# \- 🧠 QLoRA Fine-Tuning
+
+# \- 🔥 LoRA Adapters
+
+# \- 📚 PubMedQA Dataset
+
+# \- 💻 Kaggle GPU Compatible
+
+# \- 🤗 Hugging Face Integration
+
+# \- 📊 Automatic Evaluation
+
+# \- 📈 Validation Perplexity Calculation
+
+# 
+
+# \---
+
+# 
+
+# \# 🏗 Project Structure
 
 # 
 
 # ```text
 
-# .
+# medical\_qwen/
+
+# │
 
 # ├── Medical\_LLM\_Fine\_Tuning\_PubMedQA\_Qwen\_QLoRA.ipynb
 
 # ├── medical-llm-fine-tuning-pubmedqa-qwen-qlora1.ipynb
 
 # ├── medical\_qwen/
+
+# │   ├── adapter\_model.safetensors
+
+# │   ├── adapter\_config.json
+
+# │   ├── tokenizer.json
+
+# │   ├── tokenizer\_config.json
+
+# │   └── special\_tokens\_map.json
+
+# │
 
 # ├── README.md
 
@@ -64,19 +132,15 @@
 
 # 
 
-# \## 🧠 Model
+# \# 🧠 Model Information
 
 # 
 
-# | Item | Value |
+# | Property | Value |
 
-# |------|-------|
+# |-----------|-------|
 
 # | Base Model | Qwen2.5-1.5B-Instruct |
-
-# | Task | Biomedical Question Answering |
-
-# | Dataset | PubMedQA |
 
 # | Fine-tuning | QLoRA |
 
@@ -84,7 +148,13 @@
 
 # | Framework | Transformers + PEFT |
 
-# | Platform | Kaggle |
+# | Dataset | PubMedQA |
+
+# | GPU | Tesla T4 (16GB) |
+
+# | Language | English |
+
+# | Task | Biomedical Question Answering |
 
 # 
 
@@ -92,17 +162,21 @@
 
 # 
 
-# \## 📊 Dataset
+# \# 📊 Dataset
 
 # 
 
-# \- \*\*Training:\*\* `pqa\_artificial`
+# | Split | Dataset |
 
-# \- \*\*Evaluation:\*\* `pqa\_labeled`
+# |--------|----------|
+
+# | Training | pqa\_artificial |
+
+# | Validation | pqa\_labeled |
 
 # 
 
-# The model is trained to answer biomedical questions using scientific abstracts from PubMed.
+# The model learns to answer biomedical questions using scientific abstracts collected from PubMed.
 
 # 
 
@@ -110,13 +184,89 @@
 
 # 
 
-# \## ⚙️ Installation
+# \# ⚙️ Training Pipeline
+
+# 
+
+# ```text
+
+# PubMedQA
+
+# &#x20;     │
+
+# &#x20;     ▼
+
+# Data Preprocessing
+
+# &#x20;     │
+
+# &#x20;     ▼
+
+# Tokenization
+
+# &#x20;     │
+
+# &#x20;     ▼
+
+# 4-bit Quantization
+
+# &#x20;     │
+
+# &#x20;     ▼
+
+# QLoRA Fine-Tuning
+
+# &#x20;     │
+
+# &#x20;     ▼
+
+# Model Evaluation
+
+# &#x20;     │
+
+# &#x20;     ▼
+
+# Save LoRA Adapter
+
+# ```
+
+# 
+
+# \---
+
+# 
+
+# \# 📈 Example Results
+
+# 
+
+# | Metric | Score |
+
+# |---------|------:|
+
+# | Training Loss | 3.30 |
+
+# | Validation Loss | 3.49 |
+
+# | Validation Perplexity | 32.90 |
+
+# | Mean Token Accuracy | 59.3% |
+
+# 
+
+# \---
+
+# 
+
+# \# 🚀 Installation
 
 # 
 
 # ```bash
 
 # git clone https://github.com/jakirniloy/medical\_qwen.git
+
+# 
 
 # cd medical\_qwen
 
@@ -132,11 +282,11 @@
 
 # 
 
-# \## ▶️ Run
+# \# ▶️ Run the Notebook
 
 # 
 
-# Open the notebook in:
+# Open the notebook using:
 
 # 
 
@@ -156,33 +306,11 @@
 
 # 
 
-# \## 📈 Example Training Results
+# \# 💾 Output
 
 # 
 
-# | Metric | Value |
-
-# |--------|-------|
-
-# | Training Loss | 3.30 |
-
-# | Validation Loss | 3.49 |
-
-# | Validation Perplexity | 32.90 |
-
-# | Mean Token Accuracy | 59.3% |
-
-# 
-
-# \---
-
-# 
-
-# \## 💾 Output
-
-# 
-
-# The trained adapter is saved as:
+# After training, the adapter is saved to:
 
 # 
 
@@ -198,7 +326,7 @@
 
 # 
 
-# \## 🤗 Upload to Hugging Face
+# \# 🤗 Upload to Hugging Face
 
 # 
 
@@ -226,37 +354,27 @@
 
 # 
 
-# \## 🛠 Tech Stack
+# \# 🛠 Technology Stack
 
 # 
 
-# \- Python
+# | Library | Purpose |
 
-# \- PyTorch
+# |----------|---------|
 
-# \- Hugging Face Transformers
+# | PyTorch | Deep Learning |
 
-# \- PEFT
+# | Transformers | LLM |
 
-# \- TRL
+# | PEFT | Parameter Efficient Fine-Tuning |
 
-# \- Accelerate
+# | TRL | Supervised Fine-Tuning |
 
-# \- BitsAndBytes
+# | BitsAndBytes | 4-bit Quantization |
 
-# \- Datasets
+# | Accelerate | Multi-device Training |
 
-# 
-
-# \---
-
-# 
-
-# \## 📄 License
-
-# 
-
-# GPL-3.0 License
+# | Datasets | Dataset Loading |
 
 # 
 
@@ -264,11 +382,49 @@
 
 # 
 
-# \## 👨‍💻 Author
+# \# 📌 Future Work
+
+# 
+
+# \- \[ ] Merge LoRA with Base Model
+
+# \- \[ ] RAG-based Medical QA
+
+# \- \[ ] Streamlit Demo
+
+# \- \[ ] Gradio Web App
+
+# \- \[ ] Clinical Benchmark Evaluation
+
+# \- \[ ] Multi-turn Medical Conversation
+
+# 
+
+# \---
+
+# 
+
+# \# 📄 License
+
+# 
+
+# This project is licensed under the \*\*GPL-3.0 License\*\*.
+
+# 
+
+# \---
+
+# 
+
+# \# 👨‍💻 Author
 
 # 
 
 # \*\*Md. Jakir Hossain\*\*
+
+# 
+
+# 🎓 AI Researcher | Medical AI | Large Language Models
 
 # 
 
@@ -280,5 +436,13 @@
 
 # 
 
-# ⭐ If you find this project useful, please consider giving it a star!
+# <div align="center">
+
+# 
+
+# \### ⭐ If you found this repository useful, please consider giving it a Star ⭐
+
+# 
+
+# </div>
 
